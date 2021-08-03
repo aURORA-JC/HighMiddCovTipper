@@ -5,7 +5,7 @@ package config
 // User Push Channel
 const (
 	MessageApiUrl    = "https://sctapi.ftqq.com/"
-	MessagePushToken = "SCT49339TdVuPhktIqXCEUrRNIlJWxRur"
+	MessagePushToken = "SCT49339TdVuPhktIqXCEUrRNIlJWxRur" // Key example
 )
 
 // API Area

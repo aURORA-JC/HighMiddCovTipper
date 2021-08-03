@@ -1,8 +1,8 @@
 package util
 
 import (
-	"HighMiddConvTipper/model"
-	"HighMiddConvTipper/template"
+	"HighMiddCovTipper/model"
+	"HighMiddCovTipper/template"
 	"bufio"
 	"crypto/sha256"
 	"encoding/hex"

@@ -1,9 +1,9 @@
 package service
 
 import (
-	"HighMiddConvTipper/config"
-	"HighMiddConvTipper/model"
-	"HighMiddConvTipper/util"
+	"HighMiddCovTipper/config"
+	"HighMiddCovTipper/model"
+	"HighMiddCovTipper/util"
 	"bytes"
 	"encoding/json"
 	"fmt"
@@ -27,8 +27,8 @@ func GenerateParma() (interface{}, string) {
 	}, timestamp
 }
 
-// GetConvData Get Data from API
-func GetConvData() model.Covid19Data {
+// GetCovData Get Data from API
+func GetCovData() model.Covid19Data {
 	// Generate POST Body
 	parma, timestamp := GenerateParma()
 	// Calculate signature with function getSHA256String
@@ -97,7 +97,7 @@ func Send2Users(title string, content string) {
 	fmt.Println(string(body))
 }
 
-// SendConvInfo2Users Send information to users
-func SendConvInfo2Users(content string) {
+// SendCovInfo2Users Send information to users
+func SendCovInfo2Users(content string) {
 	Send2Users(" ", content)
 }

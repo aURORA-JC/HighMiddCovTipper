@@ -1,4 +1,4 @@
-module HighMiddConvTipper
+module HighMiddCovTipper
 
 go 1.16
 
