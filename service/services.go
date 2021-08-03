@@ -3,6 +3,7 @@ package service
 import (
 	"HighMiddCovTipper/config"
 	"HighMiddCovTipper/model"
+	"HighMiddCovTipper/template"
 	"HighMiddCovTipper/util"
 	"bytes"
 	"encoding/json"
@@ -14,8 +15,8 @@ import (
 	"strconv"
 )
 
-//GenerateParma Generate the POST parma
-func GenerateParma() (interface{}, string) {
+//generateParma Generate the POST parma
+func generateParma() (interface{}, string) {
 	timestamp := strconv.FormatInt(util.GetTimestamp(), 10)
 	return &model.Body{
 		AppID:           config.ApiAppid,
@@ -30,16 +31,16 @@ func GenerateParma() (interface{}, string) {
 // GetCovData Get Data from API
 func GetCovData() model.Covid19Data {
 	// Generate POST Body
-	parma, timestamp := GenerateParma()
+	parma, timestamp := generateParma()
 	// Calculate signature with function getSHA256String
 	signature := util.GetSHA256String(fmt.Sprint(timestamp, config.SignatureKey, timestamp))
 	// Convert to JSON Data
-	d, _ := json.Marshal(parma)
+	jsonData, _ := json.Marshal(parma)
 
 	// Customer's Client
 	client := &http.Client{}
 	// Set request's methode & url & body
-	req, _ := http.NewRequest("POST", config.ApiUrl, bytes.NewReader(d))
+	req, _ := http.NewRequest("POST", config.ApiUrl, bytes.NewReader(jsonData))
 	// Set Header's keys & values
 	req.Header.Set("Content-Type", config.ContentType)
 	req.Header.Set("User-Agent", config.UserAgent)
@@ -66,17 +67,17 @@ func GetCovData() model.Covid19Data {
 	// Decode with JSON & struct
 	dec := json.NewDecoder(resp.Body)
 	var info model.Covid19Data
-	err := dec.Decode(&info)
-	if err != nil {
+	decodeError := dec.Decode(&info)
+	if decodeError != nil {
 		return model.Covid19Data{Code: 114514}
 	}
 
 	return info
 }
 
-// Send2Users Send anything to users
-func Send2Users(title string, content string) {
-	resp, postError := http.PostForm(fmt.Sprint(config.MessageApiUrl, config.MessagePushToken, ".send"),
+// send2Users Send anything to users
+func send2Users(title string, content string) {
+	resp, postError := http.PostForm(fmt.Sprint(config.ServerChanApiUrl, config.ServerChanPushToken, config.ServerChanPushMisc),
 		url.Values{
 			"title": {title},
 			"desp":  {content},
@@ -99,5 +100,5 @@ func Send2Users(title string, content string) {
 
 // SendCovInfo2Users Send information to users
 func SendCovInfo2Users(content string) {
-	Send2Users(" ", content)
+	send2Users(template.PushTitleTemplate, content)
 }

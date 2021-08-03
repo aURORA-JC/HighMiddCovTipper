@@ -1,5 +1,8 @@
 package template
 
+// PushTitleTemplate The message required title
+const PushTitleTemplate = " "
+
 // PushContentTemplate A Markdown Format Text Template
 const PushContentTemplate = "## 全国中高风险疫情地区\n\n" +
 	"> **数据来源：国家卫健委 - %s 更新**\n\n" +
@@ -20,5 +23,5 @@ const PushContentTemplate = "## 全国中高风险疫情地区\n\n" +
 	"更多疫情防控信息：请关注各地卫健委相关发布。\n\n" +
 	"[新型冠状病毒肺炎疫情防控 - 国家卫健委](http://www.nhc.gov.cn/xcs/xxgzbd/gzbd_index.shtml)"
 
-// TableTemplate A Markdown Table's Template
-const TableTemplate = "| %s | %s | %s | %s |\n"
+// PushTableTemplate A Markdown Table's Template
+const PushTableTemplate = "| %s | %s | %s | %s |\n"

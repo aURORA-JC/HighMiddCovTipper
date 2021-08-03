@@ -1,19 +1,24 @@
 package config
 
-// User Area
+// ServerChan Area
 
-// User Push Channel
-const (
-	MessageApiUrl    = "https://sctapi.ftqq.com/"
-	MessagePushToken = "SCT49339TdVuPhktIqXCEUrRNIlJWxRur" // Key example
-)
+// ServerChanApiUrl ServerChan API's Domain
+const ServerChanApiUrl = "https://sctapi.ftqq.com/"
+
+// ServerChanPushToken User's ServerChan Token
+// the key will changed by args when script start
+var ServerChanPushToken = "SCT49339TdVuPhktIqXCEUrRNIlJWxRur"
+
+// ServerChanPushMisc If the API require, use this
+// For example, the ServerChan's API address is 'https://sctapi.ftqq.com/SCT49339TdVuPhktIqXCEUrRNIlJWxRur.send'
+const ServerChanPushMisc = ".send"
 
 // API Area
 
-// ApiUrl National Health Commission of PRC 's API
+// ApiUrl National Health Commission of PRC 's API address
 const ApiUrl = "http://103.66.32.242:8005/zwfwMovePortal/interface/interfaceJson"
 
-// API essential parma from "http://bmfw.www.gov.cn/yqfxdjcx/risk.html"
+// API essential parma from 'http://bmfw.www.gov.cn/yqfxdjcx/risk.html'
 const (
 	ApiToken     = "23y0ufFl5YxIyGrI8hWRUZmKkvtSjLQA"
 	ApiKey       = "3C502C97ABDA40D0A60FBEE50FAAD1DA"

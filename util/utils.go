@@ -25,12 +25,12 @@ func GetSHA256String(key string) string {
 
 // FormatContent A creator of Markdown Content
 func FormatContent(info model.Covid19Data) string {
-	content := fmt.Sprintf(template.PushContentTemplate, info.Data.EndUpdateTime, info.Data.Hcount, info.Data.Mcount, TableCreator(info.Data.HighList), TableCreator(info.Data.MiddleList))
+	content := fmt.Sprintf(template.PushContentTemplate, info.Data.EndUpdateTime, info.Data.Hcount, info.Data.Mcount, tableCreator(info.Data.HighList), tableCreator(info.Data.MiddleList))
 	return content
 }
 
-// TableCreator A creator of Markdown Table
-func TableCreator(data []struct {
+// tableCreator A creator of Markdown Table
+func tableCreator(data []struct {
 	Type        string   `json:"type"`
 	Province    string   `json:"province"`
 	City        string   `json:"city"`
@@ -47,8 +47,9 @@ func TableCreator(data []struct {
 			}
 			communities += community
 		}
-		table += fmt.Sprintf(template.TableTemplate, address.Province, address.City, address.County, communities)
+		table += fmt.Sprintf(template.PushTableTemplate, address.Province, address.City, address.County, communities)
 	}
+
 	return table
 }
 
@@ -67,8 +68,8 @@ func ReadLatestTime() string {
 	}(file)
 
 	reader := bufio.NewReader(file)
-
 	line, _ := reader.ReadString('\n')
+
 	return line
 }
 
@@ -101,5 +102,6 @@ func CompareTime(nowTime string, storeTime string) bool {
 	if result == 0 {
 		return false
 	}
+
 	return true
 }
