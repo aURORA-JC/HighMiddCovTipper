@@ -23,6 +23,13 @@ go build
 3. HighMiddCovTipper will be build in the project root path
 
 ## Usage
++ Firstly
+
+```bash
+# Set runnable power
+sudo chmod +x ./HighMiddCovTipper
+````
+
 + Start once
 
 ```bash
@@ -43,7 +50,8 @@ crontab -e
 */60 * * * * <YOUR_SCRIPT_PATH> <YOUR_SERVERCHAN_TOKEN>
 # For example, */60 * * * * /home/test/HighMiddCovTipper SCT49339TdVuPhktIqXCEUrRNIlJWxRur
 
-# Or you can create a shell script and run that shell script instead
+# Or you can use the shell script in dir ./script and run that shell script instead
+*/60 * * * * bash /home/test/start.sh
 ```
 
 ## Contributing
@@ -53,3 +61,7 @@ PRs accepted.
 ## License
 
 MIT © aURORA-JC
+
+## Author
+
+John Chow (aURORA-JC)
